@@ -66,7 +66,7 @@ THIEF_ALERT = "theft.mp3"
 
 # === STREAMLIT UI ===
 st.set_page_config(page_title="Crowd & Face Monitoring", layout="wide")
-st.title("😵 Crowd & Face Monitoring System with Alerts")
+st.title("📽️ Crowd & Face Monitoring System with Alerts")
 
 frame_display = st.empty()
 email_icon = st.empty()

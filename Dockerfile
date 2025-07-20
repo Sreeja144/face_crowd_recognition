@@ -14,11 +14,11 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     libxext6 \
     ffmpeg \
+    git-lfs \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# ✅ Install Git LFS and pull files
-RUN apt-get update && apt-get install -y git-lfs && \
-    git lfs install && git lfs pull
+# ✅ Initialize Git LFS (this will only work if .gitattributes + LFS-tracked files are committed)
+RUN git lfs install
 
 # --- Install Python dependencies ---
 COPY requirements-core.txt .
@@ -59,11 +59,11 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     libxext6 \
     ffmpeg \
+    git-lfs \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# ✅ Install Git LFS and pull files (again in final stage)
-RUN apt-get update && apt-get install -y git-lfs && \
-    git lfs install && git lfs pull
+# ✅ Install Git LFS again in final stage
+RUN git lfs install
 
 # --- Install runtime Python dependencies ---
 COPY requirements-core.txt .
@@ -78,7 +78,7 @@ COPY --from=base /app /app
 # --- Copy frontend build output to app folder ---
 COPY --from=frontend-build /frontend/dist /app/frontend_dist
 
-# ✅ Copy the entire video folder (like video/classroom.mp4, video/theft.mp4)
+# ✅ Ensure video folder and files are copied (as backup if LFS doesn't fetch)
 COPY video /app/video
 
 # --- Expose Streamlit port ---

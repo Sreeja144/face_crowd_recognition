@@ -78,8 +78,7 @@ COPY --from=base /app /app
 # --- Copy frontend build output to app folder ---
 COPY --from=frontend-build /frontend/dist /app/frontend_dist
 
-# ✅ Ensure video folder and files are copied (as backup if LFS doesn't fetch)
-COPY video /app/video
+
 
 # --- Expose Streamlit port ---
 EXPOSE 8501

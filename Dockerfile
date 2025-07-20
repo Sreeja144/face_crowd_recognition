@@ -7,6 +7,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     build-essential \
     g++ \
+    git \
     libgl1 \
     libglib2.0-0 \
     libsm6 \
@@ -14,6 +15,10 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     ffmpeg \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# ✅ Install Git LFS and pull files
+RUN apt-get update && apt-get install -y git-lfs && \
+    git lfs install && git lfs pull
 
 # --- Install Python dependencies ---
 COPY requirements-core.txt .
@@ -47,6 +52,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     build-essential \
     g++ \
+    git \
     libgl1 \
     libglib2.0-0 \
     libsm6 \
@@ -54,6 +60,10 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     ffmpeg \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# ✅ Install Git LFS and pull files (again in final stage)
+RUN apt-get update && apt-get install -y git-lfs && \
+    git lfs install && git lfs pull
 
 # --- Install runtime Python dependencies ---
 COPY requirements-core.txt .

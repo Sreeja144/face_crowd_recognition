@@ -1,0 +1,5 @@
+[wsl2]
+memory=6GB        # Limits VM memory to 6GB
+processors=4      # Use 4 CPU cores
+swap=4GB          # Swap size 4GB
+localhostForwarding=true

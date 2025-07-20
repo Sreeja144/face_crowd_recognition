@@ -1,0 +1,12 @@
+torch
+torchvision
+ultralytics
+insightface
+onnxruntime
+scikit-learn
+scikit-image
+jax
+jaxlib
+albumentations
+scikit-learn
+scikit-image

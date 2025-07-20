@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pkl
+*.mp4
+*.jpg
+*.png
+*.npy
+node_modules/
+dist/
+frontend_part/project/node_modules/
+frontend_part/project/dist/
+video/

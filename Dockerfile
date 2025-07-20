@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     git-lfs \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# ✅ Initialize Git LFS (this will only work if .gitattributes + LFS-tracked files are committed)
+# ✅ Initialize Git LFS (will only work if files are NOT LFS-tracked or properly downloaded)
 RUN git lfs install
 
 # --- Install Python dependencies ---
@@ -78,7 +78,9 @@ COPY --from=base /app /app
 # --- Copy frontend build output to app folder ---
 COPY --from=frontend-build /frontend/dist /app/frontend_dist
 
-
+# ✅ Explicitly copy required .pkl files to ensure they’re in /app/
+COPY registered_faces.pkl /app/
+COPY blacklist_faces.pkl /app/
 
 # --- Expose Streamlit port ---
 EXPOSE 8501

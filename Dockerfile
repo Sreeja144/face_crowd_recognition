@@ -74,6 +74,8 @@ COPY .streamlit /app/.streamlit
 
 RUN mkdir -p /app/audio /app/video /app/models/buffalo_l /app/utils
 RUN chmod -R 755 /app/audio /app/video /app/models /app/utils
+# ✅ Start Streamlit (NO CHANGE TO app.py NEEDED)
+CMD ["sh", "-c", "streamlit run app.py --server.port=$PORT --server.address=0.0.0.0 --server.enableCORS=false --server.enableXsrfProtection=false"]
 
-CMD sh -c "streamlit run app.py --server.port=\$PORT --server.address=0.0.0.0 --server.enableCORS=false --server.enableXsrfProtection=false"
+
 

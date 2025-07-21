@@ -74,6 +74,12 @@ COPY .streamlit /app/.streamlit
 
 RUN mkdir -p /app/audio /app/video /app/models/buffalo_l /app/utils
 RUN chmod -R 755 /app/audio /app/video /app/models /app/utils
+# Make the script executable
+RUN chmod +x download_models.sh
 
-# ✅ Start Streamlit (NO CHANGE TO app.py NEEDED)
-CMD ["sh", "-c", "streamlit run app.py --server.port=$PORT --server.address=0.0.0.0 --server.enableCORS=false --server.enableXsrfProtection=false"]
+# Run the script before starting the app
+RUN ./download_models.sh
+
+# Start the Streamlit app
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.enableCORS=false"]
+

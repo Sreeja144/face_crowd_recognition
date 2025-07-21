@@ -1,5 +1,4 @@
-faceenv/
-faceenv310/
+
 __pycache__/
 *.pyc
 *.pyo
@@ -11,3 +10,5 @@ __pycache__/
 .vscode/
 node_modules/
 frontend_part/project/node_modules/
+faceenv
+faceenv310

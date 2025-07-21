@@ -35,7 +35,7 @@ else:
 
 
 # === CONFIGURATION ===
-VIDEO_PATH = "video/theft.mp4" # Ensure this path is correct for your video
+VIDEO_PATH = "vv/classroom33.mp4" # Ensure this path is correct for your video
 EMAIL_SENDER = "smadala4@gitam.in"
 EMAIL_PASSWORD = "kljn nztp qqot juwe" # REMINDER: This is an app password, not your main Gmail password.
 # Never expose your main password directly in code.

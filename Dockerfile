@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     ffmpeg \
     git-lfs \
+    libasound2-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # ✅ Initialize Git LFS
@@ -27,8 +28,7 @@ RUN pip install --upgrade pip setuptools wheel && \
     pip install --no-cache-dir -r requirements-core.txt && \
     pip install --no-cache-dir -r requirements-heavy.txt
 
-# ✅ Copy all backend source files including:
-# app.py, audio/, video/, register.pkl, utils/, models/, etc.
+# ✅ Copy all backend source files
 COPY . .
 
 # === Frontend build stage ===
@@ -61,31 +61,32 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     ffmpeg \
     git-lfs \
+    libasound2-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN git lfs install
 
-# --- Reinstall Python deps ---
+# --- Install Python dependencies ---
 COPY requirements-core.txt .
 COPY requirements-heavy.txt .
 RUN pip install --upgrade pip setuptools wheel && \
     pip install --no-cache-dir -r requirements-core.txt && \
     pip install --no-cache-dir -r requirements-heavy.txt
 
-# ✅ Copy everything needed for backend
+# ✅ Copy everything from base stage
 COPY --from=base /app /app
 
 # ✅ Copy built frontend
 COPY --from=frontend-build /frontend/dist /app/frontend_dist
 
-# ✅ Ensure static assets are available
-# This is *optional* if already in /app from base stage
-# COPY video/ video/
-# COPY audio/ audio/
-# COPY register.pkl register.pkl
+# ✅ Make sure these folders exist (avoid FileNotFoundError)
+RUN mkdir -p /app/audio /app/video /app/models/buffalo_l /app/utils
+
+# ✅ Permissions for audio/video if needed
+RUN chmod -R 755 /app/audio /app/video /app/models /app/utils
 
 # --- Expose Streamlit port ---
 EXPOSE 8501
 
-# --- Start Streamlit ---
+# ✅ Start Streamlit headlessly
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.enableCORS=false", "--server.enableXsrfProtection=false"]

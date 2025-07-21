@@ -1,5 +1,7 @@
 models/buffalo_l/2d106det.onnx
-models/buffalo_l/1k3d68.onnx
+models/buffalo_l/det_10g.onnx
+models/buffalo_l/genderage.onnx
+models/buffalo_l/w600k_r50.onnx
 
 __pycache__/
 *.pyc

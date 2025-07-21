@@ -1,4 +1,6 @@
 models/buffalo_l/2d106det.onnx
+models/buffalo_l/1k3d68.onnx
+
 __pycache__/
 *.pyc
 *.pyo

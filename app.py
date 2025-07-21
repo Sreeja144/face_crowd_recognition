@@ -36,10 +36,9 @@ else:
 
 # === CONFIGURATION ===
 VIDEO_PATH = "vv/classroom33.mp4" # Ensure this path is correct for your video
-EMAIL_SENDER = "smadala4@gitam.in"
-EMAIL_PASSWORD = "kljn nztp qqot juwe" # REMINDER: This is an app password, not your main Gmail password.
-# Never expose your main password directly in code.
-DB_URL = "postgresql://faceuser:gruqofbpAImi7EY6tyrGQjVsmMgMPiG6@dpg-d1oiqqadbo4c73b4fca0-a.frankfurt-postgres.render.com/face_db_7r21"
+EMAIL_SENDER = os.getenv("EMAIL_SENDER")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+DB_URL = os.getenv("DATABASE_URL")
 
 os.makedirs("unknown_faces", exist_ok=True)
 

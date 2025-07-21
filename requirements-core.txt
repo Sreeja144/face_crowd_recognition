@@ -7,3 +7,4 @@ email-validator
 pygame
 mediapipe
 pyarrow>=7.0,<10.0
+email-validator

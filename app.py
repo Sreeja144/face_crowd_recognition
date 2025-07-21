@@ -35,7 +35,7 @@ else:
 
 
 # === CONFIGURATION ===
-VIDEO_PATH = "vv/classroom33.mp4" # Ensure this path is correct for your video
+VIDEO_PATH = "video/theft.mp4" # Ensure this path is correct for your video
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 DB_URL = os.getenv("DATABASE_URL")

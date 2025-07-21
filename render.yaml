@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: crowdvision-app
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: |
+      mkdir -p models/buffalo_l && \
+      wget -q https://huggingface.co/deepinsight/insightface-models/resolve/main/antelopev2/buffalo_l/1k3d68.onnx -O models/buffalo_l/1k3d68.onnx && \
+      streamlit run app.py
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "true"

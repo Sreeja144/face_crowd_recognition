@@ -78,9 +78,7 @@ COPY --from=base /app /app
 # --- Copy frontend build output to app folder ---
 COPY --from=frontend-build /frontend/dist /app/frontend_dist
 
-# ✅ Explicitly copy required .pkl files to ensure they’re in /app/
-COPY registered_faces.pkl /app/
-COPY blacklist_faces.pkl /app/
+
 
 # --- Expose Streamlit port ---
 EXPOSE 8501
